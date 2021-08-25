@@ -7,7 +7,8 @@
   background-color: rgb(9, 91, 172);
 }
 
-label {
+form {
+  padding-left: 10px;
   display: flex;
   align-items: center;
   width: 600px;
@@ -31,4 +32,27 @@ input:focus,
 input:hover {
   cursor: pointer;
   border: 2px solid rgb(248, 155, 68);
+  background-color: #fff;
+}
+
+.BtnForm {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  margin-right: 15px;
+  width: 32px;
+  height: 30px;
+  color: rgb(9, 91, 172);
+  background-color: #fff;
+  border: 0;
+  outline: 0;
+}
+
+.BtnForm:hover {
+  border: 1px solid rgb(248, 155, 68);
+  border-radius: 5px;
+  color: rgb(248, 155, 68);
+  cursor: pointer;
 }

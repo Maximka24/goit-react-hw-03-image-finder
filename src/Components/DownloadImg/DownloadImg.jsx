@@ -1,13 +1,18 @@
-import React, { PureComponent } from "react";
+import React, { Component } from "react";
 import s from "./DownloadImg.module.css";
 
-export default class DownloadImg extends PureComponent {
+export default class DownloadImg extends Component {
   render() {
     return (
       <div className={s.DownloadContainer}>
-        <button className={s.DownloadBtnImg} type="button">
-          Add image
-        </button>
+        {this.props.nameImgState !== "" && (
+          <button
+            className={s.DownloadBtnImg}
+            onClick={this.props.onClickPageState}
+          >
+            Add image
+          </button>
+        )}
       </div>
     );
   }
