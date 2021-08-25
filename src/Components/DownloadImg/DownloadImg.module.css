@@ -1,0 +1,26 @@
+.DownloadContainer {
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 15px;
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.DownloadBtnImg {
+  background-color: rgb(9, 91, 172);
+  width: 160px;
+  height: 40px;
+  color: rgb(255, 255, 255);
+  font-size: 24px;
+  border: 0;
+  border-radius: 5px;
+  outline: none;
+}
+
+.DownloadBtnImg:hover,
+.DownloadBtnImg:focus {
+  cursor: pointer;
+  border: 2px solid rgb(248, 155, 68);
+  color: rgb(248, 155, 68);
+}
