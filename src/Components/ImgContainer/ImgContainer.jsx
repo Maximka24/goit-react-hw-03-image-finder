@@ -1,5 +1,9 @@
 import React, { Component } from "react";
 import DownloadImg from "../DownloadImg/DownloadImg";
+import ModalImg from "../ModaImg/ModalImg";
+
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
+import Loader from "react-loader-spinner";
 
 import s from "./ImgContainer.module.css";
 
@@ -11,6 +15,8 @@ export default class ImgContainer extends Component {
     imgList: "",
     page: 1,
     error: null,
+    showModal: false,
+    targetImg: "",
     status: "idle",
   };
 
@@ -47,12 +53,26 @@ export default class ImgContainer extends Component {
     }
   }
 
+  modalRendImg = (e) => {
+    if (e.target !== e.currentTarget) {
+      this.setState(() => ({
+        targetImg: e.target.currentSrc,
+      }));
+    }
+  };
+
+  toggleModal = (e) => {
+    this.setState((state) => ({
+      showModal: !state.showModal,
+    }));
+  };
+
   onClickPageState = () => {
     this.setState((prevPage) => ({ page: prevPage.page + 1 }));
   };
 
   render() {
-    const { imgList, error, status } = this.state;
+    const { imgList, error, status, showModal } = this.state;
 
     if (status === "idle") {
       return (
@@ -61,7 +81,11 @@ export default class ImgContainer extends Component {
     }
 
     if (status === "load") {
-      return <div className={s.ImgContainer}> Загружаю (будет спинер) </div>;
+      return (
+        <div className={s.ImgContainer}>
+          <Loader type="Oval" color="#00BFFF" height={80} width={80} />
+        </div>
+      );
     }
 
     if (status === "error") {
@@ -70,11 +94,16 @@ export default class ImgContainer extends Component {
 
     if (status === "resolved") {
       return (
-        <div className={s.ImgContainer}>
+        <>
+          {/* {!imgList && <Loader type="Oval" color="#00BFFF" height={ 80 } width={ 80 } />} */}
           {imgList && (
-            <ul className={s.ImageGallery}>
+            <ul className={s.ImageGallery} onClick={this.modalRendImg}>
               {imgList.map(({ id, webformatURL }) => (
-                <li key={id} className={s.ImageGalleryItem}>
+                <li
+                  key={id}
+                  className={s.ImageGalleryItem}
+                  onClick={this.toggleModal}
+                >
                   <img
                     className={s.ImageGalleryItemImage}
                     src={webformatURL}
@@ -88,7 +117,15 @@ export default class ImgContainer extends Component {
             nameImgState={this.state.imgList}
             onClickPageState={this.onClickPageState}
           />
-        </div>
+          {showModal && (
+            <ModalImg onClose={this.toggleModal}>
+              <img
+                src={this.state.targetImg}
+                alt={`Картинка по запросу ${this.props.imgName}`}
+              />
+            </ModalImg>
+          )}
+        </>
       );
     }
   }
