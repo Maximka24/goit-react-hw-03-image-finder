@@ -1,4 +1,7 @@
 import React, { Component } from "react";
+
+import PropTypes from "prop-types";
+
 import s from "./DownloadImg.module.css";
 
 export default class DownloadImg extends Component {
@@ -17,3 +20,7 @@ export default class DownloadImg extends Component {
     );
   }
 }
+
+DownloadImg.propTypes = {
+  onSubmit: PropTypes.func,
+};

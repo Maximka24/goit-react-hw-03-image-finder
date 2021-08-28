@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { BiSearch } from "react-icons/bi";
 
+import PropTypes from "prop-types";
+
 import s from "./GetImg.module.css";
 
 export default class GetImg extends Component {
@@ -45,3 +47,7 @@ export default class GetImg extends Component {
     );
   }
 }
+
+GetImg.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+};
