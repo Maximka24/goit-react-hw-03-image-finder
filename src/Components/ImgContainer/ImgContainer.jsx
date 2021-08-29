@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 
 import DownloadImg from "../DownloadImg/DownloadImg";
 import ModalImg from "../ModalImg/ModalImg";
+import ImageItem from "../ImgItem/ImgItem";
 
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import Loader from "react-loader-spinner";
@@ -120,21 +121,12 @@ export default class ImgContainer extends Component {
       return (
         <>
           {imgList && (
-            <ul className={s.ImageGallery} onClick={this.modalRendImg}>
-              {imgList.map(({ id, webformatURL }) => (
-                <li
-                  key={id}
-                  className={s.ImageGalleryItem}
-                  onClick={this.toggleModal}
-                >
-                  <img
-                    className={s.ImageGalleryItemImage}
-                    src={webformatURL}
-                    alt={`Картинка по запросу ${this.props.imgName}`}
-                  />
-                </li>
-              ))}
-            </ul>
+            <ImageItem
+              imgName={this.props.imgName}
+              imgList={imgList}
+              onClickOpenModal={this.modalRendImg}
+              onClickToggleModal={this.toggleModal}
+            />
           )}
           {statusLoad && (
             <div className={s.ImgContainer}>
